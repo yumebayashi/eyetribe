@@ -1,0 +1,20 @@
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+
+# gradle
+.gradle
+gradle/
+gradlew
+gradlew.bat
+out/
+
+# Others
+.DS_Store
+
+
+
+
+
