@@ -66,7 +66,7 @@ public class EyeTrack {
 //                System.out.println(getAverage());
 //                x 0-1400
 //                y 0-900
-                Point2D pt = getAverage();
+                Point2D pt = getMedian();
                 String ret = "";
 
                 if (pt.x < 450 && pt.y < 300) {
@@ -93,7 +93,7 @@ public class EyeTrack {
 
         }
 
-        private Point2D getAverage() {
+        private Point2D getMedian() {
             Arrays.sort(xs);
             Arrays.sort(ys);
 
@@ -103,7 +103,7 @@ public class EyeTrack {
             return new Point2D(x, y);
         }
 
-        private Point2D getAverage(int index) {
+        private Point2D getMedian(int index) {
             float[] xs = new float[10];
             float[] ys = new float[10];
 
