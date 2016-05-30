@@ -13,14 +13,8 @@ public class EyeTrack {
     public void execute() {
         final GazeManager gm = GazeManager.getInstance();
 
-        boolean bool = gm.activate();
         final GazeListener gazeListener = new GazeListener();
         gm.addGazeListener(gazeListener);
-
-//        gm.addScreenStateListener(new ScreenListener());
-
-        //TODO: Do awesome gaze control wizardry
-
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -33,13 +27,6 @@ public class EyeTrack {
 
     }
 
-    private class ScreenListener implements IScreenStateListener {
-
-        @Override
-        public void onScreenStatesChanged(int i, int i1, int i2, float v, float v1) {
-
-        }
-    }
 
     private class GazeListener implements IGazeListener {
         private float[] xs = new float[30];
@@ -48,47 +35,35 @@ public class EyeTrack {
 
         @Override
         public void onGazeUpdate(GazeData gazeData) {
-//            System.out.println(gazeData.toString());
-//            System.out.println(gazeData.smoothedCoordinates);
             if (counter > 29) counter = 0;
             xs[counter] = gazeData.smoothedCoordinates.x;
             ys[counter] = gazeData.smoothedCoordinates.y;
             counter++;
 
-//            if (counter % 10 == 0) {
-//                Point2D pt = getAverage(counter);
-//                String ret = pt.x + ":" + pt.y;
-//                System.out.println(ret);
-//                Chat.broadcastMessage("move", ret);
-//            }
-
             if (counter % 30 == 0) {
-//                System.out.println(getAverage());
-//                x 0-1400
-//                y 0-900
                 Point2D pt = getMedian();
-                String ret = "";
+                PosType posType = null;
 
                 if (pt.x < 450 && pt.y < 300) {
-                    ret = "leftup";
+                    posType = PosType.LU;
                 } else if (pt.x > 450 && pt.x < 900 && pt.y < 300) {
-                    ret = "centerup";
+                    posType = PosType.CU;
                 } else if (pt.x > 900 && pt.y < 300) {
-                    ret = "rightup";
+                    posType = PosType.RU;
                 } else if (pt.x < 450 && pt.y > 300 && pt.y < 600) {
-                    ret = "leftmiddle";
+                    posType = PosType.LM;
                 } else if (pt.x > 450 && pt.x < 900 && pt.y > 300 && pt.y < 600) {
-                    ret = "centermiddle";
+                    posType = PosType.CM;
                 } else if (pt.x > 900 && pt.y > 300 && pt.y < 600) {
-                    ret = "rightmiddle";
+                    posType = PosType.RM;
                 } else if (pt.x < 450 && pt.y > 600) {
-                    ret = "leftdown";
+                    posType = PosType.LD;
                 } else if (pt.x > 450 && pt.x < 900 && pt.y > 600) {
-                    ret = "centerdown";
+                    posType = PosType.CD;
                 } else if (pt.x > 900 && pt.y > 600) {
-                    ret = "rightdown";
+                    posType = PosType.RD;
                 }
-                Chat.broadcastMessage("stop", ret);
+                Chat.broadcastMessage("stop", posType.getPosition());
             }
 
         }

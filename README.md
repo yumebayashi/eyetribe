@@ -3,8 +3,8 @@
 ### Usage
 
 ```
-git clone https://github.com/yumebayashi/eyetribe-experiment.git
-cd eyetribe-experiment
+git clone https://github.com/yumebayashi/eyetribe-demo.git
+cd eyetribe-demo
 gradle idea
 ```
 
