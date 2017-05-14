@@ -1,13 +1,13 @@
 ![System Conf](https://github.com/yumebayashi/eyetribe-experiment/wiki/images/system.png)
 
+### Environment
+`java:1.8`
+
 ### Usage
 
-```
-git clone https://github.com/yumebayashi/eyetribe-demo.git
-cd eyetribe-demo
-gradle idea
-```
+run eyetribe sever in advance.  
+then execute Main
 
-Chat.java has a main method.  
-Execute Chat.  
-You need run eyetribe server in advance.
+### Demo
+https://www.youtube.com/watch?v=F-JJikCd6Nc
+

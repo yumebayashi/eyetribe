@@ -14,14 +14,14 @@ webSocket.onclose = function () {
 };
 
 function update(pos) {
-    $(".leftup").css("border", "");
-    $(".centerup").css("border", "");
-    $(".rightup").css("border", "");
+    $(".lefttop").css("border", "");
+    $(".centertop").css("border", "");
+    $(".righttop").css("border", "");
     $(".leftmiddle").css("border", "");
     $(".centermiddle").css("border", "");
     $(".rightmiddle").css("border", "");
-    $(".rightdown").css("border", "");
-    $(".centerdown").css("border", "");
-    $(".leftdown").css("border", "");
+    $(".rightbottom").css("border", "");
+    $(".centerbottom").css("border", "");
+    $(".leftbottom").css("border", "");
     $("." + pos).css("border", "15px dashed white");
 }
