@@ -15,13 +15,8 @@ public class WebSocketBroadcaster {
 
     private WebSocketBroadcaster() {
         GazeManager gm = GazeManager.getInstance();
-        gm.getScreenPhysicalHeight();
-        gm.getScreenPhysicalWidth();
-        gm.getScreenResolutionWidth();
-        gm.getScreenResolutionHeight();
-
         System.out.println(gm.activate());
-        GazeListener gazeListener = new GazeListener();
+        GazeListener gazeListener = new GazeListener(gm.getScreenResolutionWidth(), gm.getScreenResolutionHeight());
         gm.addGazeListener(gazeListener);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -46,7 +41,6 @@ public class WebSocketBroadcaster {
         clients.remove(socket);
     }
 
-    //全ソケットにmessageを送信
     protected void sendToAll(String message) {
         for (WebSocketHandler member : clients) {
             try {
