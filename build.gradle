@@ -22,3 +22,6 @@ dependencies {
     compile('com.theeyetribe:eyetribe-java:0.9.77')
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2'
+}
