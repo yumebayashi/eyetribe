@@ -18,14 +18,11 @@ public class WebSocketBroadcaster {
         GazeListener gazeListener = new GazeListener(gm.getScreenResolutionWidth(), gm.getScreenResolutionHeight());
         gm.addGazeListener(gazeListener);
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.out.println("finished");
-                gm.removeGazeListener(gazeListener);
-                gm.deactivate();
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("finished");
+            gm.removeGazeListener(gazeListener);
+            gm.deactivate();
+        }));
     }
 
     protected static WebSocketBroadcaster getInstance() {
